@@ -19,7 +19,34 @@ class Alien:
     collision_detection(other): Implementation TBD.
     """
 
-    pass
+    health = 3
+    total_aliens_created = 0
 
 
-#TODO:  create the new_aliens_collection() function below to call your Alien class with a list of coordinates.
+    def __init__(self, x_coordinate, y_coordinate):
+        self.x_coordinate = x_coordinate
+        self.y_coordinate = y_coordinate
+        Alien.total_aliens_created += 1
+
+
+    def hit(self):
+        ''' Decrements health by 1 point. '''
+        self.health -= 1
+
+
+    def is_alive(self):
+        ''' Check if the alien is still alive. '''
+        return self.health > 0
+
+    def teleport(self, x_coordinate, y_coordinate):
+        ''' Teleports the alien to a new location '''
+        self.x_coordinate = x_coordinate
+        self.y_coordinate = y_coordinate
+
+    def collision_detection(self, other_object):
+        ''' TO-DO: Detects the collision of two objects '''
+
+
+def new_aliens_collection(alien_start_positions):
+    ''' Creates an Alien's collection based on the given positions '''
+    return [Alien(positions[0], positions[1]) for positions in alien_start_positions]
